@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from scikits.optimization import criterion, step, optimizer, line_search
+from scikits.optimization import criterion, optimizer
 import matplotlib.pyplot as plt
 
 class Rosenbrock:
@@ -46,9 +46,9 @@ def start_optimization():
   startPoint[1,0] -= .1
   startPoint[2,1] += .1
   recorder = Recorder()
-  optimi = optimizer.PolytopeOptimizer(function = Rosenbrock(), criterion = criterion.OrComposition(criterion.AbsoluteValueCriterion(.0001), criterion.IterationCriterion(100)), x0 = startPoint, record=recorder)
+  optimi = optimizer.PolytopeOptimizer(function = Rosenbrock(), criterion = criterion.criterion(ftol = .01, iterations_max=50), x0 = startPoint, record=recorder)
 
-  optimi.optimize()
+  print optimi.optimize()
 
 if __name__ == "__main__":
   start_optimization()
