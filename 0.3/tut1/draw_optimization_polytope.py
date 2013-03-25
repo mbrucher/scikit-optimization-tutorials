@@ -90,7 +90,7 @@ plt.savefig("ros_simplex_calls.png")
 
 plt.figure()
 plt.semilogy(recorder.old, label="Old value")
-plt.semilogy(np.arange(-1, -1 + len(recorder.new)), recorder.new, label="New value")
+plt.semilogy(np.arange(-1, -1 + len(recorder.new)), np.array(recorder.new) + 1e-40, label="New value")
 plt.legend()
 plt.title("Rosenbrock values with a simplex")
 plt.savefig("ros_simplex_values.png")
